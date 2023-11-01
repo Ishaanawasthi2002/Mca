@@ -1,0 +1,30 @@
+#include<reg51.h>
+Const unsigned char Display[10]={0XF6,0X90,0XB5,0X93,0X37,0X77,0X94,0XF7,0XB7};
+void MSDelay()
+{
+	TR0 = 0;
+	TF0 = 0;
+	TL0 = 0x4b;
+	TH0 = 0xff;
+	TR0 = 1;
+	while(TF0 == 0)
+	{
+	}
+	TR0 = 0;
+	TF0 = 0;
+
+}
+Void main()
+{
+	Int i=0;
+	Unsigned char x=1;
+	P0=0X00;
+	While(1)
+	{
+		For(i=0;i<10;i++)
+		{
+			P0=Display[i];
+			MSDelay(100);
+		}
+	}
+}
