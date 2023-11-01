@@ -1,0 +1,50 @@
+#include<reg51.h>
+#define lcd_data P2
+sbit rs=P0^0;
+sbit rw=P0^1;
+sbit E=P0^2;
+
+void cmd();
+void Data();
+void show();
+void lcd_delay();
+
+void  cmd(unsigned char a)
+{
+	Lcd_data=b;
+	rs=1;
+rw=0;
+lcd_delay();
+E=0;
+}
+void show(unsigned char *s)
+{
+while(*s)
+{
+Data(*s++);
+}
+}
+
+
+void MSDelay()
+{
+TMOD=0X01;
+TH0=0Xb7;
+TL0=0Xfd;
+TR0=1;
+while(TF0==0)
+{
+}
+TR0=0;
+TF0=0;
+}
+void main()
+{
+While(1)
+{
+cmd(0X80);
+show(“MCOE”);
+MSDelay();
+cmd(0X01);
+}
+}
