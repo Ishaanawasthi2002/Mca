@@ -1,0 +1,19 @@
+#include<reg51.h>                                                                            //header file included
+void delay(unsigned int time);                                                      //delay function declaration
+void main()
+{
+	unsigned int i;
+  	while(1)               //infinite loop for continuous saw tooth waveform generation
+	{
+     		P2 = 0x55;
+		delay(100);                                                      //delay function call
+          		P2 = 0xAA;
+		delay(100);                                                      //delay function call
+	}
+}	
+void delay(unsigned int time)                                                     //for delay generation
+{
+	unsigned int i,j;
+	for(i=0;i<time;i++)
+	for(j=0;j<1275;j++);
+}
